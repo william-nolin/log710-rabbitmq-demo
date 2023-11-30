@@ -7,9 +7,9 @@ Afin d'utiliser cette démo, vous devez avoir installé sur votre ordinateur:
  - Un shell (sh, bash, zsh, ...)
 
 Le dépôt contient trois scripts afin de démarrer rapidement la simulation:
- - start.sh: Démarrage de RabbitMQ et des noeuds de calcul dans Docker
- - send_tasks.sh: Envoie de 10 tâches à RabbitMQ
- - stop.sh: Éteint les conteneurs Docker démarrés précédement
+ - ```start.sh```: Démarrage de RabbitMQ et des noeuds de calcul dans Docker
+ - ```send_tasks.sh```: Envoie de 10 tâches à RabbitMQ
+ - ```stop.sh```: Éteint les conteneurs Docker démarrés précédement
 
 Afin de simuler une charge de travail, les messages envoyés aux noeuds de calcul contiennent un ou plusieurs points, qui détermine la longueur du travail. 
 Par exemple, le message "......" correspond à un travail de 6 secondes.
