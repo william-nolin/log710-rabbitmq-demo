@@ -1,7 +1,12 @@
 #!/bin/sh
+send_task () {
+    dots=$(printf '.%.0s' $(eval "echo {1.."$(($1))"}"))
+    docker run --rm --name rabbitmq_send_task rabbitmq-send-task ./new_task.py "Message #$1 $dots"
+}
 
-./new_task.py Premier message.
-./new_task.py Deuxième message..
-./new_task.py Troisième message...
-./new_task.py Quatrième message....
-./new_task.py Cinquième message.....
+docker build -t rabbitmq-send-task -f send.Dockerfile .
+
+for i in {1..10}
+do
+    send_task $i
+done
