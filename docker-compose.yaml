@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    container_name: rabbitmq
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    environment:
+      RABBITMQ_DEFAULT_USER: "admin"
+      RABBITMQ_DEFAULT_PASS: "asecurepassword"
+
+  worker:
+    build:
+      context: .
+      dockerfile: worker.Dockerfile
+    depends_on: 
+      - rabbitmq
+    deploy:
+      replicas: 4
+    environment:
+      RABBITMQ_HOST: "rabbitmq"
+    
